@@ -12,5 +12,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    //TODO заменить core:model на core:dto
+    compile project(':core:model')
+    compile group: 'org.springframework', name: 'spring-web', version: springVersion
 }
