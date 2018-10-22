@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test page</title>
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+</head>
+<script type="text/javascript">
+
+    function justDoIt() {
+        $.ajax({
+            type: 'GET',
+            url: '/templates',
+            data: {},
+            cache: false,
+            success: function (data) {
+                $('#response').html(data);
+            },
+            error: function (resp) {
+                $('#response').html('Пусто');
+            }
+        });
+    }
+
+    $(function() {
+        justDoIt();
+    });
+
+</script>
+<body>
+
+HelloWorld!
+<br/>
+Список шаблонов:
+<div id="response"></div>
+
+</body>
+</html>
