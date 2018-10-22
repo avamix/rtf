@@ -1,4 +1,4 @@
-package ru.sbrf.nhl.core.model;
+package ru.sbrf.nhl.rtf.core.model;
 
 public abstract class AbstractEntity {
 

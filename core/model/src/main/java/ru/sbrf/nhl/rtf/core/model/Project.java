@@ -1,6 +1,6 @@
-package ru.sbrf.nhl.core.model;
+package ru.sbrf.nhl.rtf.core.model;
 
-import ru.sbrf.nhl.core.model.component.ProjectStatus;
+import ru.sbrf.nhl.rtf.core.model.component.ProjectStatus;
 
 import java.time.LocalDate;
 

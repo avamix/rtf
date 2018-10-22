@@ -1,6 +1,6 @@
-package ru.sbrf.nhl.core.model;
+package ru.sbrf.nhl.rtf.core.model;
 
-import ru.sbrf.nhl.core.model.component.TemplateParamType;
+import ru.sbrf.nhl.rtf.core.model.component.TemplateParamType;
 
 public class TemplateParam extends AbstractEntity {
 

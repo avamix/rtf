@@ -1,4 +1,4 @@
-package ru.sbrf.nhl.core.model.component;
+package ru.sbrf.nhl.rtf.core.model.component;
 
 import java.util.ArrayList;
 import java.util.List;
