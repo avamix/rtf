@@ -12,5 +12,9 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project(':api:restapi')
+    compile project(':api:restimpl')
+    compile project(':web')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springbootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springbootVersion
 }
