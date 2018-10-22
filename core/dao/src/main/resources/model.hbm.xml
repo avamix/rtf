@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ru.sbrf.nhl.core.model">
+
+    <class name="ru.sbrf.nhl.rtf.core.model.Project" table="project">
+        <id name="id">
+            <generator class="native">
+                <param name="sequence">project_id_seq</param>
+            </generator>
+        </id>
+        <property name="name" not-null="true" unique="true"/>
+        <property name="description" not-null="true"/>
+        <property name="status" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">ru.sbrf.nhl.rtf.core.model.component.ProjectStatus</param>
+            </type>
+        </property>
+        <property name="createDate" column="grp" not-null="true"/>
+        <one-to-one name="template" class="ru.sbrf.nhl.rtf.core.model.Template" lazy="false" cascade="none"/>
+    </class>
+
+    <class name="ru.sbrf.nhl.rtf.core.model.Template" table="template">
+        <id name="id">
+            <generator class="native">
+                <param name="sequence">template_id_seq</param>
+            </generator>
+        </id>
+        <property name="name" not-null="true" unique="true"/>
+        <list name="params" table="template_param" lazy="false" cascade="all-delete-orphan">
+            <key column="template_id"/>
+            <list-index column="id"/>
+            <one-to-many class="ru.sbrf.nhl.rtf.core.model.TemplateParam"/>
+        </list>
+    </class>
+
+    <class name="ru.sbrf.nhl.rtf.core.model.TemplateParam" table="template_param">
+        <id name="id">
+            <generator class="native">
+                <param name="sequence">template_param_id_seq</param>
+            </generator>
+        </id>
+        <property name="name" not-null="true"/>
+        <property name="type" type="ru.sbrf.nhl.rtf.core.dao.component.TemplateParamTypeType"/>
+    </class>
+
+</hibernate-mapping>

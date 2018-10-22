@@ -12,5 +12,10 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project(':core:model')
+    compile group: 'org.springframework', name: 'spring-context', version: springVersion
+    compile group: 'org.springframework', name: 'spring-orm', version: springVersion
+    compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion
+    //DRIVER HARDCODE
+    compile group: 'org.hsqldb', name: 'hsqldb', version: '2.4.1'
 }
