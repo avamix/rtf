@@ -7,7 +7,7 @@ public class Template extends AbstractEntity {
 
     private String name;
 
-    private List<TemplateParam> params = new ArrayList<>();
+    private List<TemplateField> fields = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -17,11 +17,11 @@ public class Template extends AbstractEntity {
         this.name = name;
     }
 
-    public List<TemplateParam> getParams() {
-        return params;
+    public List<TemplateField> getFields() {
+        return fields;
     }
 
-    public void setParams(List<TemplateParam> params) {
-        this.params = params;
+    public void setFields(List<TemplateField> fields) {
+        this.fields = fields;
     }
 }

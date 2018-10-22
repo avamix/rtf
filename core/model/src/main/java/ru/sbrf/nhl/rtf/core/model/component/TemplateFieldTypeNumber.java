@@ -1,6 +1,6 @@
 package ru.sbrf.nhl.rtf.core.model.component;
 
-public class TemplateParamTypeNumber implements TemplateParamType {
+public class TemplateFieldTypeNumber implements TemplateFieldType {
 
     public static final String TYPE = "NUMBER";
 

@@ -3,7 +3,7 @@ package ru.sbrf.nhl.rtf.core.model.component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TemplateParamTypeEnum implements TemplateParamType {
+public class TemplateFieldTypeEnum implements TemplateFieldType {
 
     public static final String TYPE = "ENUM";
 

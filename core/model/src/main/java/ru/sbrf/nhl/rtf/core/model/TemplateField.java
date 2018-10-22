@@ -1,12 +1,12 @@
 package ru.sbrf.nhl.rtf.core.model;
 
-import ru.sbrf.nhl.rtf.core.model.component.TemplateParamType;
+import ru.sbrf.nhl.rtf.core.model.component.TemplateFieldType;
 
-public class TemplateParam extends AbstractEntity {
+public class TemplateField extends AbstractEntity {
 
     private String name;
 
-    private TemplateParamType type;
+    private TemplateFieldType type;
 
     public String getName() {
         return name;
@@ -16,11 +16,11 @@ public class TemplateParam extends AbstractEntity {
         this.name = name;
     }
 
-    public TemplateParamType getType() {
+    public TemplateFieldType getType() {
         return type;
     }
 
-    public void setType(TemplateParamType type) {
+    public void setType(TemplateFieldType type) {
         this.type = type;
     }
 }

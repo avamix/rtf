@@ -4,15 +4,15 @@ import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.type.StringType;
 import org.hibernate.usertype.UserType;
-import ru.sbrf.nhl.rtf.core.model.component.TemplateParamType;
-import ru.sbrf.nhl.rtf.core.model.component.TemplateParamTypeString;
+import ru.sbrf.nhl.rtf.core.model.component.TemplateFieldType;
+import ru.sbrf.nhl.rtf.core.model.component.TemplateFieldTypeString;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TemplateParamTypeType implements UserType {
+public class TemplateFieldTypeType implements UserType {
 
     @Override
     public int[] sqlTypes() {
@@ -21,7 +21,7 @@ public class TemplateParamTypeType implements UserType {
 
     @Override
     public Class returnedClass() {
-        return TemplateParamTypeString.class;
+        return TemplateFieldTypeString.class;
     }
 
     @Override
@@ -38,12 +38,12 @@ public class TemplateParamTypeType implements UserType {
     public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
         assert names.length == 1;
         String stringValue = (String) StringType.INSTANCE.get(rs, names[0], session);
-        return TemplateParamTypeConverter.toObject(stringValue);
+        return TemplateFieldTypeConverter.toObject(stringValue);
     }
 
     @Override
     public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
-        String stringValue = TemplateParamTypeConverter.toString((TemplateParamType) value);
+        String stringValue = TemplateFieldTypeConverter.toString((TemplateFieldType) value);
         StringType.INSTANCE.set(st, stringValue, index, session);
     }
 

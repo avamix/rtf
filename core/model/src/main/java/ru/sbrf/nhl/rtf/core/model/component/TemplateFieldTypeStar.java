@@ -1,6 +1,6 @@
 package ru.sbrf.nhl.rtf.core.model.component;
 
-public class TemplateParamTypeStar implements TemplateParamType {
+public class TemplateFieldTypeStar implements TemplateFieldType {
 
     public static final String TYPE = "STAR";
 
