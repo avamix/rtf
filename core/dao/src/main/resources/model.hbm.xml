@@ -43,7 +43,16 @@
             </generator>
         </id>
         <property name="name" not-null="true"/>
-        <property name="type" type="ru.sbrf.nhl.rtf.core.dao.component.TemplateFieldTypeType"/>
+        <property name="type" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">ru.sbrf.nhl.rtf.core.model.component.TemplateFieldType</param>
+            </type>
+        </property>
+        <map name="addParams" table="template_field_param" lazy="false">
+            <key column="template_field_id"/>
+            <map-key column="key" type="string"/>
+            <element column="value" type="string"/>
+        </map>
     </class>
 
 </hibernate-mapping>

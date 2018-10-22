@@ -6,7 +6,8 @@ import ru.sbrf.nhl.rtf.api.restapi.TemporaryController;
 import ru.sbrf.nhl.rtf.core.model.Project;
 import ru.sbrf.nhl.rtf.core.model.Template;
 import ru.sbrf.nhl.rtf.core.model.TemplateField;
-import ru.sbrf.nhl.rtf.core.model.component.*;
+import ru.sbrf.nhl.rtf.core.model.component.ProjectStatus;
+import ru.sbrf.nhl.rtf.core.model.component.TemplateFieldType;
 import ru.sbrf.nhl.rtf.core.service.ProjectService;
 import ru.sbrf.nhl.rtf.core.service.TemplateService;
 
@@ -25,8 +26,8 @@ public class TemporaryControllerImpl implements TemporaryController {
 
     @Override
     public String initdb() {
-        createProject1();
 //        projectService.getAll();
+        createProject1();
         createProject2();
         return "Ok!";
     }
@@ -36,14 +37,17 @@ public class TemporaryControllerImpl implements TemporaryController {
         t.setName("template1");
         TemplateField p1 = new TemplateField();
         p1.setName("par1");
-        p1.setType(new TemplateFieldTypeNumber());
+        p1.getAddParams().put("min", "0");
+        p1.getAddParams().put("max", "100");
+        p1.setType(TemplateFieldType.NUMBER);
         TemplateField p2 = new TemplateField();
         p2.setName("par2");
-        p2.setType(new TemplateFieldTypeString());
+        p2.setType(TemplateFieldType.STRING);
 
         TemplateField p3 = new TemplateField();
         p3.setName("par3");
-        p3.setType(new TemplateFieldTypeStar());
+        p3.setType(TemplateFieldType.STAR);
+        p3.getAddParams().put("max", "5");
 
         t.setFields(Arrays.asList(new TemplateField[]{p1, p2, p3}));
         templateService.createTemplate(t);
@@ -62,10 +66,10 @@ public class TemporaryControllerImpl implements TemporaryController {
         t.setName("template2");
         TemplateField p1 = new TemplateField();
         p1.setName("par3");
-        p1.setType(new TemplateFieldTypeStar());
+        p1.setType(TemplateFieldType.STAR);
         TemplateField p2 = new TemplateField();
         p2.setName("par4");
-        p2.setType(new TemplateFieldTypeBoolean());
+        p2.setType(TemplateFieldType.BOOL);
         t.setFields(Arrays.asList(new TemplateField[]{p1, p2}));
         t.setFields(Arrays.asList(new TemplateField[]{p1}));
         templateService.createTemplate(t);
