@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.sbrf.nhl.rtf.container.springboot.templates.dto.KnownObject;
 import ru.sbrf.nhl.rtf.container.springboot.templates.dto.TemplateData;
-import ru.sbrf.nhl.rtf.container.springboot.templates.dto.UpdateRequest;
-import ru.sbrf.nhl.rtf.container.springboot.templates.dto.ViewObject;
 
 @RestController("/templates")
 public class TemplateController {
@@ -18,19 +17,19 @@ public class TemplateController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ViewObject<TemplateData> getById(@PathVariable String templateId) {
+    public KnownObject<TemplateData, String> getById(@PathVariable String templateId) {
         return templateService.getById(templateId);
     }
 
     @PostMapping("/create")
     @ResponseBody
-    public ViewObject<TemplateData> create(@RequestBody TemplateData template) {
+    public KnownObject<TemplateData, String> create(@RequestBody TemplateData template) {
         return templateService.save(template);
     }
 
     @PostMapping("/update")
     @ResponseBody
-    public ViewObject<TemplateData> update(@RequestBody UpdateRequest<TemplateData> template) {
+    public KnownObject<TemplateData, String> update(@RequestBody KnownObject<TemplateData, String> template) {
         return templateService.update(template);
     }
 }

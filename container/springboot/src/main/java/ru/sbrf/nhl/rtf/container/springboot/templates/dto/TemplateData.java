@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class TemplateData {
     private String name;
-    private List<FieldDefinition> fields;
+    private List<Field> fields;
 }

@@ -1,0 +1,29 @@
+{
+  "name": "New template 01",
+  "fields": [
+    {
+      "type": "text",
+      "label": "Enter name"
+    },
+    {
+      "type": "range",
+      "label": "Enter your age",
+      "min": 15,
+      "max": 45
+    },
+    {
+      "type": "select",
+      "label": "Enter your sex",
+      "options": [
+        {
+          "key": "m",
+          "text": "Male"
+        },
+        {
+          "key": "f",
+          "text": "Female"
+        }
+      ]
+    }
+  ]
+}

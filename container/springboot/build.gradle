@@ -20,4 +20,5 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springbootVersion
 
     compileOnly 'org.projectlombok:lombok:1.16.22'
+    testCompile 'junit:junit:4.12'
 }
