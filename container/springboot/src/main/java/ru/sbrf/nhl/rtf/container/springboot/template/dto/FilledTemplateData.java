@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 public class FilledTemplateData implements Serializable {
-    private String templateId;
+    private Long templateId;
     private List<FieldValue> fields;
 }

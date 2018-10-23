@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.sbrf.nhl.rtf.core.model.Template;
 
 @Repository
-public interface TemplateRepository extends JpaRepository<Template, String> {
+public interface TemplateRepository extends JpaRepository<Template, Long> {
 }

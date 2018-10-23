@@ -1,6 +1,7 @@
 package ru.sbrf.nhl.rtf.container.springboot.template.dto;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Value;
 
 /**
  * Объект с идентификатором и версией модификации
@@ -8,7 +9,8 @@ import lombok.Data;
  * @param <T>
  * @param <ID>
  */
-@Data
+@Value
+@AllArgsConstructor
 public class KnownObject<T, ID> {
     /**
      * ID объекта
@@ -19,4 +21,6 @@ public class KnownObject<T, ID> {
      */
     private long version;
     private T data;
+
+
 }

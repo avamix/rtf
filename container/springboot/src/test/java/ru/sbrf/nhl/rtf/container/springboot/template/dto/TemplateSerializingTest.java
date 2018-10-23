@@ -38,12 +38,17 @@ public class TemplateSerializingTest {
 
         TemplateData repaired = mapper.readerFor(TemplateData.class).readValue(json);
         Assert.assertEquals(data, repaired);
+
+        KnownObject<TemplateData, Integer> createdObject = new KnownObject<>(7712, 0, repaired);
+        json = mapper.writeValueAsString(createdObject);
+        System.out.println(json);
+
     }
 
     @Test
     public void testFilledTemplateSerializer() throws IOException {
         FilledTemplateData data = new FilledTemplateData();
-        data.setTemplateId("SOME_RANDOM_UUID_AS_STRING");
+        data.setTemplateId(7712L);
         data.setFields(asList(
                 new TextField.Value("name", "Team NHL"),
                 new RangeField.Value("age", 33),
