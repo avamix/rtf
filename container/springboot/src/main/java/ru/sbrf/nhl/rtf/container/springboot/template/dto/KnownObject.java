@@ -1,4 +1,4 @@
-package ru.sbrf.nhl.rtf.container.springboot.templates.dto;
+package ru.sbrf.nhl.rtf.container.springboot.template.dto;
 
 import lombok.Data;
 

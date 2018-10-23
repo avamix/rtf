@@ -1,10 +1,10 @@
-package ru.sbrf.nhl.rtf.container.springboot.templates;
+package ru.sbrf.nhl.rtf.container.springboot.template;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.sbrf.nhl.rtf.container.springboot.templates.dto.KnownObject;
-import ru.sbrf.nhl.rtf.container.springboot.templates.dto.TemplateData;
+import ru.sbrf.nhl.rtf.container.springboot.template.dto.KnownObject;
+import ru.sbrf.nhl.rtf.container.springboot.template.dto.TemplateData;
 import ru.sbrf.nhl.rtf.core.model.Template;
 
 @Transactional

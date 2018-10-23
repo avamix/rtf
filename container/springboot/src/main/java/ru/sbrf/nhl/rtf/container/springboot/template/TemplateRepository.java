@@ -1,4 +1,4 @@
-package ru.sbrf.nhl.rtf.container.springboot.templates;
+package ru.sbrf.nhl.rtf.container.springboot.template;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

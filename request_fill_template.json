@@ -1,0 +1,20 @@
+{
+  "templateId": "SOME_RANDOM_UUID_AS_STRING",
+  "fields": [
+    {
+      "type": "text",
+      "name": "name",
+      "value": "Enter name"
+    },
+    {
+      "type": "range",
+      "name": "age",
+      "value": 33
+    },
+    {
+      "type": "select",
+      "name": "sex",
+      "selectedKey": "m"
+    }
+  ]
+}
