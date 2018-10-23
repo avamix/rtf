@@ -45,7 +45,7 @@ public class TemplateSerializingTest {
         FilledTemplateData data = new FilledTemplateData();
         data.setTemplateId("SOME_RANDOM_UUID_AS_STRING");
         data.setFields(asList(
-                new TextField.Value("name", "Enter name"),
+                new TextField.Value("name", "Team NHL"),
                 new RangeField.Value("age", 33),
                 new SelectField.Value("sex", "m")
         ));
