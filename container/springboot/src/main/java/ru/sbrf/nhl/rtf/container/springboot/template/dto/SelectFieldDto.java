@@ -14,14 +14,14 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SelectField extends Field {
+public class SelectFieldDto extends FieldDto {
     @NotNull
     @Size(min = 2)
     @Valid
     private List<Option> options;
 
     @JsonCreator
-    public SelectField(@JsonProperty("name") @NotNull String name, @JsonProperty("label") @NotNull String label, @JsonProperty("options") @NotNull @Size(min = 2) @Valid List<Option> options) {
+    public SelectFieldDto(@JsonProperty("name") @NotNull String name, @JsonProperty("label") @NotNull String label, @JsonProperty("options") @NotNull @Size(min = 2) @Valid List<Option> options) {
         super(name, label);
         this.options = options;
     }

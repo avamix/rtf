@@ -25,11 +25,11 @@ public class TemplateSerializingTest {
         TemplateData data = new TemplateData();
         data.setName("New template 01");
         data.setFields(asList(
-                new TextField("name", "Enter name"),
-                new RangeField("age", "Enter your age", 15, 45),
-                new SelectField("sex", "Enter your sex", asList(
-                        new SelectField.Option("m", "Male"),
-                        new SelectField.Option("f", "Female")
+                new TextFieldDto("name", "Enter name"),
+                new RangeFieldDto("age", "Enter your age", 15, 45),
+                new SelectFieldDto("sex", "Enter your sex", asList(
+                        new SelectFieldDto.Option("m", "Male"),
+                        new SelectFieldDto.Option("f", "Female")
                 ))
         ));
 
@@ -50,9 +50,9 @@ public class TemplateSerializingTest {
         FilledTemplateData data = new FilledTemplateData();
         data.setTemplateId(7712L);
         data.setFields(asList(
-                new TextField.Value("name", "Team NHL"),
-                new RangeField.Value("age", 33),
-                new SelectField.Value("sex", "m")
+                new TextFieldDto.Value("name", "Team NHL"),
+                new RangeFieldDto.Value("age", 33),
+                new SelectFieldDto.Value("sex", "m")
         ));
 
         String json = mapper.writeValueAsString(data);

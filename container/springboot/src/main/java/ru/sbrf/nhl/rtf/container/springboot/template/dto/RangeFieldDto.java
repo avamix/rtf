@@ -9,12 +9,12 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class RangeField extends Field {
+public class RangeFieldDto extends FieldDto {
     private int min = 0;
     private int max = 5;
 
     @JsonCreator
-    public RangeField(@JsonProperty("name") @NotNull String name, @JsonProperty("label") @NotNull String label, @JsonProperty("min") int min, @JsonProperty("max") int max) {
+    public RangeFieldDto(@JsonProperty("name") @NotNull String name, @JsonProperty("label") @NotNull String label, @JsonProperty("min") int min, @JsonProperty("max") int max) {
         super(name, label);
         this.min = min;
         this.max = max;

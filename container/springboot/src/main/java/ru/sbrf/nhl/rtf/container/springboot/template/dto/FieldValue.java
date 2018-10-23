@@ -12,9 +12,9 @@ import java.io.Serializable;
         use = JsonTypeInfo.Id.NAME,
         property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = TextField.Value.class, name = "text"),
-        @JsonSubTypes.Type(value = RangeField.Value.class, name = "range"),
-        @JsonSubTypes.Type(value = SelectField.Value.class, name = "select"),
+        @JsonSubTypes.Type(value = TextFieldDto.Value.class, name = "text"),
+        @JsonSubTypes.Type(value = RangeFieldDto.Value.class, name = "range"),
+        @JsonSubTypes.Type(value = SelectFieldDto.Value.class, name = "select"),
 })
 @Data
 @NoArgsConstructor

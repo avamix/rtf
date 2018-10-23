@@ -12,13 +12,11 @@ repositories {
 }
 
 dependencies {
-    compile project(':core:model')
-    compile project(':core:dao')
-    compile project(':web')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springbootVersion
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springbootVersion
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springbootVersion
 
     compileOnly 'org.projectlombok:lombok:1.16.22'
     testCompile 'junit:junit:4.12'
+
+    runtimeOnly 'com.h2database:h2:1.4.197'
 }

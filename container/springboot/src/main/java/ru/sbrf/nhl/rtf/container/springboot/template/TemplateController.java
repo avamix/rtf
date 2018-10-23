@@ -14,30 +14,30 @@ import ru.sbrf.nhl.rtf.container.springboot.template.dto.KnownObject;
 import ru.sbrf.nhl.rtf.container.springboot.template.dto.TemplateData;
 import ru.sbrf.nhl.rtf.container.springboot.template.dto.TemplateReference;
 
-@RestController("/templates")
+@RestController
 public class TemplateController {
     @Autowired
     private TemplateService templateService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/templates/{id}")
     @ResponseBody
-    public KnownObject<TemplateData, Long> getById(@PathVariable Long templateId) {
+    public KnownObject<TemplateData, Long> getById(@PathVariable("id") Long templateId) {
         return templateService.getById(templateId);
     }
 
-    @GetMapping
+    @GetMapping("/templates")
     @ResponseBody
     public Page<TemplateReference> findAll(Pageable pageable) {
         return templateService.findAll(pageable);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/templates/create")
     @ResponseBody
     public KnownObject<TemplateData, Long> create(@RequestBody TemplateData template) {
         return templateService.save(template);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/templates/update")
     @ResponseBody
     public KnownObject<TemplateData, Long> update(@RequestBody KnownObject<TemplateData, Long> template) {
         return templateService.update(template);

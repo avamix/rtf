@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class TextField extends Field {
+public class TextFieldDto extends FieldDto {
     @JsonCreator
-    public TextField(@JsonProperty("name") @NotNull String name, @JsonProperty("label") @NotNull String label) {
+    public TextFieldDto(@JsonProperty("name") @NotNull String name, @JsonProperty("label") @NotNull String label) {
         super(name, label);
     }
 

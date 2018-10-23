@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.sbrf.nhl.rtf.container.springboot.template.dao.Field;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,14 +15,14 @@ import java.io.Serializable;
         use = JsonTypeInfo.Id.NAME,
         property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = TextField.class, name = "text"),
-        @JsonSubTypes.Type(value = RangeField.class, name = "range"),
-        @JsonSubTypes.Type(value = SelectField.class, name = "select"),
+        @JsonSubTypes.Type(value = TextFieldDto.class, name = "text"),
+        @JsonSubTypes.Type(value = RangeFieldDto.class, name = "range"),
+        @JsonSubTypes.Type(value = SelectFieldDto.class, name = "select"),
 })
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Field implements Serializable {
+public class FieldDto implements Serializable {
     /**
      * Уникальный ключ поля внутри шаблона - системное имя поля
      */
@@ -34,4 +35,9 @@ public class Field implements Serializable {
     @NotNull
     @NotEmpty
     private String label;
+
+    public static FieldDto from(Field field) {
+        // todo: parse hierarchy
+        return new FieldDto(field.getName(), field.getLabel());
+    }
 }
