@@ -1,6 +1,14 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springbootVersion")
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
 
 group 'ru.sbrf.nhl'
 version '1.0-SNAPSHOT'
@@ -12,5 +20,10 @@ repositories {
 }
 
 dependencies {
+    compile ("org.springframework.boot:spring-boot-starter-web:$springbootVersion")
     compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
+    compile group: 'org.springframework', name: 'spring-web', version: springVersion
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+    compileOnly 'javax.servlet:javax.servlet-api:' + servletVersion
 }

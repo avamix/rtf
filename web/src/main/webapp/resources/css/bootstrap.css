@@ -28,18 +28,18 @@
 }
 
 .button.copy {
-    background: url(../../images/copy.svg);
+    background: url(../images/copy.svg);
     display: inline-block;
 
 }
 
 .button.delete {
-    background:url(../../images/garbage.svg);
+    background:url(../images/garbage.svg);
     display: inline-block;
 }
 
 .button.add {
-    background:url(../../images/add.svg);
+    background:url(../images/add.svg);
     display: inline-block;
 }
 
