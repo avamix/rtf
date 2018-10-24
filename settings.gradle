@@ -18,11 +18,8 @@ findProject(':api:restapi')?.name = 'restapi'
 include 'api:restimpl'
 findProject(':api:restimpl')?.name = 'restimpl'
 
-//WEB
+//WEB CLIENT FOR APP
 include 'web'
 
-//CONTAINER
-include 'container'
-include 'container:springboot'
-findProject(':container:springboot')?.name = 'springboot'
-
+//BUSINESS APP
+include 'feedback-app'
