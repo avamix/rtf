@@ -1,5 +1,6 @@
 package ru.sbrf.nhl.rtf.container.springboot.template.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import ru.sbrf.nhl.rtf.container.springboot.template.dao.Template;
@@ -10,6 +11,7 @@ import static java.util.stream.Collectors.toList;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class TemplateData {
     private String name;
     private List<FieldDto> fields;

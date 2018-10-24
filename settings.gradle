@@ -11,13 +11,6 @@ findProject(':core:dto')?.name = 'dto'
 include 'core:service'
 findProject(':core:service')?.name = 'service'
 
-//API
-include 'api'
-include 'api:restapi'
-findProject(':api:restapi')?.name = 'restapi'
-include 'api:restimpl'
-findProject(':api:restimpl')?.name = 'restimpl'
-
 //WEB CLIENT FOR APP
 include 'web'
 
