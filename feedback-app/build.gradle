@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springbootVersion")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+group 'ru.sbrf.nhl'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile ("org.springframework.boot:spring-boot-starter-data-jpa:$springbootVersion")
+    compile ("org.springframework.boot:spring-boot-starter-web:$springbootVersion")
+
+    compileOnly 'org.projectlombok:lombok:1.16.22'
+    testCompile 'junit:junit:4.12'
+
+    runtimeOnly 'com.h2database:h2:1.4.197'
+}

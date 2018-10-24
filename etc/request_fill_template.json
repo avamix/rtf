@@ -1,0 +1,20 @@
+{
+  "templateId": 7712,
+  "fields": [
+    {
+      "type": "text",
+      "name": "name",
+      "value": "Team NHL"
+    },
+    {
+      "type": "range",
+      "name": "age",
+      "value": 33
+    },
+    {
+      "type": "select",
+      "name": "sex",
+      "selectedKey": "m"
+    }
+  ]
+}
