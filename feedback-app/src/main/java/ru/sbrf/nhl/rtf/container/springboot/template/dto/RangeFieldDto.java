@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -25,7 +26,8 @@ public class RangeFieldDto extends FieldDto {
     public static class Value extends FieldValue {
         private int value;
 
-        public Value(@JsonProperty("name") @NotNull String name, @JsonProperty("value") @NotNull int value) {
+        @JsonCreator
+        public Value(@JsonProperty("name") @NotNull @NotEmpty String name, @JsonProperty("value") @NotNull Integer value) {
             super(name);
             this.value = value;
         }

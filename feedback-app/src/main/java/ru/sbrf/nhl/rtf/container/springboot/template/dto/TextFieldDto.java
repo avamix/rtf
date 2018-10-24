@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -20,7 +21,8 @@ public class TextFieldDto extends FieldDto {
     public static class Value extends FieldValue {
         private String value;
 
-        public Value(@JsonProperty("name") @NotNull String name, @JsonProperty("value") @NotNull String value) {
+        @JsonCreator
+        public Value(@JsonProperty("name") @NotNull String name, @JsonProperty("value") @NotNull @NotEmpty String value) {
             super(name);
             this.value = value;
         }

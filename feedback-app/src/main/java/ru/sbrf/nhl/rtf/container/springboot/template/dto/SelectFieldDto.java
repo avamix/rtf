@@ -45,11 +45,11 @@ public class SelectFieldDto extends FieldDto {
     @Data
     @EqualsAndHashCode(callSuper = true)
     public static class Value extends FieldValue {
-        private final String name;
         private String selectedKey;
 
-        public Value(@JsonProperty("name") @NotNull String name, @JsonProperty("selectedKey") @NotNull String selectedKey) {
-            this.name = name;
+        @JsonCreator
+        public Value(@JsonProperty("name") @NotNull @NotEmpty String name, @JsonProperty("selectedKey") @NotNull @NotEmpty String selectedKey) {
+            super(name);
             this.selectedKey = selectedKey;
         }
     }
