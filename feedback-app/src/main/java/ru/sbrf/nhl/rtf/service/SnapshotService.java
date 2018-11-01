@@ -2,6 +2,7 @@ package ru.sbrf.nhl.rtf.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,8 @@ public class SnapshotService {
     private final PersonRepository personRepository;
     private final FeedbackRepository feedbackRepository;
     private final AbilitySnapshotRepository abilitySnapshotRepository;
+    @Value("${snapshot_calculation.minimal_feedback_count}")
+    private int minimalFeedbacksForSnapshot;
 
     @Autowired
     public SnapshotService(
@@ -49,7 +52,7 @@ public class SnapshotService {
     /**
      * Создание среза по оценкам для всех пользователей
      */
-    @Scheduled(fixedDelay = 10_000)
+    @Scheduled(cron = "${snapshot_calculation.scheduling_cron}")
     public void createSnapshots() {
         log.info("Start calculate snapshots");
         personRepository.findAll().forEach(this::createPersonSnapshot);
@@ -67,7 +70,7 @@ public class SnapshotService {
                 ? feedbackRepository.findNewByPerson(person.getId(), lastSnapshot.getCreatedAt())
                 : feedbackRepository.findNewByPerson(person.getId());
 
-        if (newFeedBacks.size() < 5) {
+        if (newFeedBacks.size() < minimalFeedbacksForSnapshot) {
             log.info("Not enough feedback: {}", newFeedBacks.size());
             return;
         }
