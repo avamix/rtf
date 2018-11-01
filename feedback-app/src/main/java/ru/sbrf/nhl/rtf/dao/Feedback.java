@@ -1,7 +1,9 @@
 package ru.sbrf.nhl.rtf.dao;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
@@ -18,6 +20,8 @@ import java.util.Date;
 @Entity
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Feedback {
     @Id
     @GeneratedValue

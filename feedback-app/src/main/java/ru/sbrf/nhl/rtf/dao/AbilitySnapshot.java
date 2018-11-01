@@ -1,8 +1,10 @@
 package ru.sbrf.nhl.rtf.dao;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -20,6 +22,8 @@ import java.util.Date;
 @EqualsAndHashCode(exclude = "person")
 @ToString(exclude = "person")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AbilitySnapshot implements Comparable<AbilitySnapshot> {
     @Id
     @GeneratedValue

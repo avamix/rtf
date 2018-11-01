@@ -1,7 +1,9 @@
 package ru.sbrf.nhl.rtf.dao;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,6 +19,8 @@ import java.util.SortedSet;
 @Entity
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
     @Id
     @GeneratedValue
