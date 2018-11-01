@@ -42,17 +42,23 @@ public class SnapshotService {
         this.abilityRepository = abilityRepository;
     }
 
+    /**
+     * Создание среза по оценкам для всех пользователей
+     */
     public void createSnapshots() {
         personRepository.findAll().forEach(this::createPersonSnapshot);
     }
 
+    /**
+     * Создание среза по оценкам пользователя
+     *
+     * @param person пользователь для которого создаётся срез
+     */
     public void createPersonSnapshot(Person person) {
         Feedback feedbackExample = Feedback.builder().target(person).build();
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withMatcher("target", exact());
-        List<Feedback> feedBacks = feedbackRepository.findAll(Example.of(feedbackExample, matcher));
-        log.info("{}", feedBacks);
-        List<AbilitySnapshot> snapshots = feedBacks.stream()
+        List<AbilitySnapshot> snapshots = feedbackRepository.findAll(Example.of(feedbackExample, matcher)).stream()
                 .collect(groupingBy(Feedback::getAbility))
                 .entrySet().stream()
                 .map(entry -> {
@@ -75,7 +81,6 @@ public class SnapshotService {
                 })
                 .collect(toList());
         abilityRepository.saveAll(snapshots);
-        log.info("{}", snapshots);
     }
 
 }
