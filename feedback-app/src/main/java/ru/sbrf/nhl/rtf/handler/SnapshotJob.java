@@ -9,8 +9,6 @@ import ru.sbrf.nhl.rtf.service.SnapshotService;
 @Slf4j
 @Component
 public class SnapshotJob {
-    private static final int FIXED_DELAY = 10_000;
-
     private final SnapshotService service;
 
     @Autowired
@@ -18,7 +16,7 @@ public class SnapshotJob {
         this.service = service;
     }
 
-    @Scheduled(fixedDelay = FIXED_DELAY, initialDelay = FIXED_DELAY)
+    @Scheduled(cron = "${snapshot_calculation.scheduling_cron}")
     public void start() {
         log.debug("Start calculate snapshots");
         service.createSnapshots();
