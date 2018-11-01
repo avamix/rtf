@@ -56,7 +56,7 @@ public class TestDataCommandLineRunner implements CommandLineRunner {
                     Person person = Person.builder()
                             .fullName(name)
                             .grade(RANDOM.nextInt(15))
-                            .successFactorId(name + "-" + RANDOM.nextInt())
+                            .successFactorId(name)
                             .roles(singleton(roles.get(RANDOM.nextInt(roles.size()))))
                             .build();
                     if (0 == RANDOM.nextInt(10)) { // 10%
