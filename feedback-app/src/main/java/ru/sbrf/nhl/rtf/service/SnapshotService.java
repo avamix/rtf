@@ -75,7 +75,7 @@ public class SnapshotService {
                 .entrySet().stream()
                 .map(entry -> getAbilitySnapshot(person, entry))
                 .collect(toList());
-        log.info("New snapshots size: {}", snapshots);
+        log.info("New snapshots count: {}", snapshots);
         abilitySnapshotRepository.saveAll(snapshots);
     }
 
