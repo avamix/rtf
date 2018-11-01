@@ -36,7 +36,7 @@ public class TestDataCommandLineRunner implements CommandLineRunner {
     public void run(String... args) {
         EntityManager manager = emf.createEntityManager();
         manager.getTransaction().begin();
-        List<Ability> abilities = Stream.of("Java", "Gramatics", "Ansible", "Algorithms")
+        List<Ability> abilities = Stream.of("Java", "Grammar", "Ansible", "Algorithms")
                 .map(name -> Ability.builder()
                         .name(name)
                         .build())
