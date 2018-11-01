@@ -26,7 +26,7 @@ public class Feedback {
     @NotNull
     private Person target;
     @NotNull
-    private Long targetCurrentGrade;
+    private Byte targetCurrentGrade;
     @NotNull
     private Long value;
     private String comment;
@@ -54,7 +54,7 @@ public class Feedback {
          * Анонимный грейд автора оценки
          */
         @NotNull
-        private Long grade;
+        private Integer grade;
         /**
          * Анонимный вес автора оценки по текущей характеристике
          */

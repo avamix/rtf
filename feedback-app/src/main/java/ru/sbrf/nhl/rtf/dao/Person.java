@@ -26,7 +26,7 @@ public class Person {
     @ManyToMany
     private Set<Role> roles;
     @NotNull
-    private Long grade;
+    private Integer grade;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     @OrderBy("createdBy DESC")
     private SortedSet<AbilitySnapshot> abilities;
