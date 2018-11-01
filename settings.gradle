@@ -1,7 +1,4 @@
 rootProject.name = 'rtf'
 
-//WEB CLIENT FOR APP
-include 'web'
-
 //BUSINESS APP
 include 'feedback-app'
