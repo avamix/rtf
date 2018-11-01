@@ -78,7 +78,7 @@ public class SnapshotService {
         abilitySnapshotRepository.saveAll(snapshots);
     }
 
-    private AbilitySnapshot getAbilitySnapshot(Person person, Map.Entry<Ability, List<Feedback>> entry) {
+    private static AbilitySnapshot getAbilitySnapshot(Person person, Map.Entry<Ability, List<Feedback>> entry) {
         List<Feedback> sorted = entry.getValue().stream()
                 .sorted(Comparator.comparing(f -> f.getAuthor().getValueOnAbility()))
                 .collect(toList());
