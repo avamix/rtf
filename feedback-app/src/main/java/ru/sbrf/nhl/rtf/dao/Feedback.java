@@ -26,9 +26,9 @@ public class Feedback {
     @NotNull
     private Person target;
     @NotNull
-    private Byte targetCurrentGrade;
+    private Integer targetCurrentGrade;
     @NotNull
-    private Long value;
+    private Integer value;
     private String comment;
     @OneToOne
     @NotNull
@@ -43,6 +43,8 @@ public class Feedback {
     private FeedbackAuthor author;
 
     @Embeddable
+    @Data
+    @Builder
     public static class FeedbackAuthor {
         /**
          * Ссылка на человека который дал оценку -
@@ -56,9 +58,9 @@ public class Feedback {
         @NotNull
         private Integer grade;
         /**
-         * Анонимный вес автора оценки по текущей характеристике
+         * оценка автора по текущей характеристике
          */
         @NotNull
-        private Double valueOnAbility;
+        private Integer valueOnAbility;
     }
 }

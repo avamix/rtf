@@ -2,6 +2,7 @@ package ru.sbrf.nhl.rtf.dao;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import java.util.Date;
 
 @Entity
 @Builder
+@EqualsAndHashCode(exclude = "person")
 @Data
 public class AbilitySnapshot implements Comparable<AbilitySnapshot> {
     @Id
@@ -27,7 +29,7 @@ public class AbilitySnapshot implements Comparable<AbilitySnapshot> {
     @OneToOne
     private Ability ability;
     @NotNull
-    private Double value;
+    private Integer value;
     @NotNull
     @ManyToOne
     private Person person;
