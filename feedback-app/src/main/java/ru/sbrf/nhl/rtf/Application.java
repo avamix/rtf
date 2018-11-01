@@ -20,7 +20,6 @@ public class Application {
     @Bean
     public CommandLineRunner testData() {
         return args -> {
-
         };
     }
 }

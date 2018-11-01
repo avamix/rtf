@@ -1,16 +1,5 @@
 rootProject.name = 'rtf'
 
-//CORE
-include 'core'
-include 'core:model'
-findProject(':core:model')?.name = 'model'
-include 'core:dao'
-findProject(':core:dao')?.name = 'dao'
-include 'core:dto'
-findProject(':core:dto')?.name = 'dto'
-include 'core:service'
-findProject(':core:service')?.name = 'service'
-
 //WEB CLIENT FOR APP
 include 'web'
 
