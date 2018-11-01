@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -33,6 +34,7 @@ public class Feedback {
     private Integer targetCurrentGrade;
     @NotNull
     private Integer value;
+    @Size(max = 500)
     private String comment;
     @OneToOne
     @NotNull
