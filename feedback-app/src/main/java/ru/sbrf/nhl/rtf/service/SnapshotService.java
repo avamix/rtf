@@ -49,9 +49,7 @@ public class SnapshotService {
     /**
      * Создание среза по оценкам для всех пользователей
      */
-    @Scheduled(fixedDelay = 10_000)
     public void createSnapshots() {
-        log.info("Start calculate snapshots");
         personRepository.findAll().forEach(this::createPersonSnapshot);
     }
 
@@ -68,7 +66,7 @@ public class SnapshotService {
                 : feedbackRepository.findNewByPerson(person.getId());
 
         if (newFeedBacks.size() < 5) {
-            log.info("Not enough feedback: {}", newFeedBacks.size());
+            log.debug("Not enough feedback: {}", newFeedBacks.size());
             return;
         }
 
@@ -77,7 +75,7 @@ public class SnapshotService {
                 .entrySet().stream()
                 .map(entry -> getAbilitySnapshot(person, entry))
                 .collect(toList());
-        log.info("New snapshots count: {}", snapshots);
+        log.info("New snapshots count: {}", snapshots.size());
         abilitySnapshotRepository.saveAll(snapshots);
     }
 
