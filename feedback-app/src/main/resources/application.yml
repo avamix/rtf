@@ -1,4 +1,7 @@
 test-data: enabled
+snapshot_calculation:
+  minimal_feedback_count: 5
+  scheduling_cron: 0/10 * * * * ?
 
 spring:
   jpa:
