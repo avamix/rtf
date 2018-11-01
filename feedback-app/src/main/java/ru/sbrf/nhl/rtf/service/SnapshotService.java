@@ -3,6 +3,7 @@ package ru.sbrf.nhl.rtf.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sbrf.nhl.rtf.dao.Ability;
@@ -14,14 +15,15 @@ import ru.sbrf.nhl.rtf.dao.Person;
 import ru.sbrf.nhl.rtf.dao.PersonRepository;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Сервис создания срезов по оценкам
@@ -36,6 +38,8 @@ public class SnapshotService {
     private final AbilitySnapshotRepository abilitySnapshotRepository;
     @Value("${snapshot_calculation.minimal_feedback_count}")
     private int minFeedbacksForSnapshot;
+    @Value("${snapshot_calculation.default_weight}")
+    private int defaultFeedbackWeight;
 
     @Autowired
     public SnapshotService(
@@ -81,23 +85,48 @@ public class SnapshotService {
         abilitySnapshotRepository.saveAll(snapshots);
     }
 
-    private static AbilitySnapshot getAbilitySnapshot(Person person, Map.Entry<Ability, List<Feedback>> entry) {
-        List<Feedback> sorted = entry.getValue().stream()
-                .sorted(Comparator.comparing(f -> f.getAuthor().getWeight()))
-                .collect(toList());
-        long sum = 0;
-        long dt = 0;
-        for (int i = 1; i <= sorted.size(); i++) {
-            Feedback feedback = sorted.get(i - 1);
-            sum += feedback.getValue() * feedback.getAuthor().getWeight();
-            dt += feedback.getAuthor().getWeight();
+    private AbilitySnapshot getAbilitySnapshot(Person person, Map.Entry<Ability, List<Feedback>> entry) {
+        // 1. grade
+        // 2. ability
+        Map<Feedback, Integer> weightsByFeedback = entry.getValue().stream()
+                .collect(toMap(Function.identity(), feedback -> getFeedbackWeight(feedback)));
+        long aggregate = 0;
+        long weightSum = 0;
+        for (Map.Entry<Feedback, Integer> feedbackAndWeight : weightsByFeedback.entrySet()) {
+            Feedback feedback = feedbackAndWeight.getKey();
+            Integer weight = feedbackAndWeight.getValue();
+
+            aggregate += feedback.getValue() * weight;
+            weightSum += weight;
         }
         return AbilitySnapshot.builder()
                 .ability(entry.getKey())
                 .createdAt(new Date())
                 .person(person)
-                .value((int) Math.round(sum * 1.0 / dt))
+                .value(getAbilityValue(aggregate, weightSum))
                 .build();
+    }
+
+    private int getAbilityValue(long aggregate, long weightSum) {
+        if (weightSum == 0) {
+            return 0;
+        }
+        return (int) Math.round(aggregate * 1.0 / weightSum);
+    }
+
+    private int getFeedbackWeight(Feedback feedback) {
+        int valueOnAbility = feedback.getAuthor().getValueOnAbility();
+        if (valueOnAbility == 0) {
+            return defaultFeedbackWeight;
+        }
+        int weight = valueOnAbility;
+        weight = (weight * feedback.getAuthor().getGrade()) / feedback.getTarget().getGrade();
+        weight = (weight * feedback.getSource().getWeight()) / 100;
+        //head
+        //general head
+
+        return weight;
+
     }
 
 }

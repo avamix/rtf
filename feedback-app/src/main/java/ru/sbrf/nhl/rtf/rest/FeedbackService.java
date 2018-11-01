@@ -36,7 +36,7 @@ public class FeedbackService {
                 .comment(feedbackDto.getComment())
                 .author(Feedback.FeedbackAuthor.builder()
                         .grade(author.getGrade())
-                        .weight(getAuthorAbilityValue(author, target, feedbackDto))
+                        .valueOnAbility(getAuthorAbilityValue(author, target, feedbackDto))
                         .person(feedbackDto.isAnonymous() ? null : author)
                         .build())
                 .ability(ability)
@@ -51,17 +51,10 @@ public class FeedbackService {
         if (CollectionUtils.isEmpty(author.getAbilities())) {
             return 0;
         }
-        Integer weight = author.getAbilities().stream()
+        return author.getAbilities().stream()
                 .filter(abilitySnapshot -> abilitySnapshot.getAbility().getId().equals(feedbackDto.getAbilityId()))
                 .max(Comparator.comparing(AbilitySnapshot::getCreatedAt))
                 .map(AbilitySnapshot::getValue)
-                .orElse(DEFAULT_WEIGHT);
-
-        weight = (weight * author.getGrade()) / target.getGrade();
-        weight = (weight * feedbackDto.getSource().getWeight()) / 100;
-        //head
-        //general head
-
-        return weight;
+                .orElse(0);
     }
 }

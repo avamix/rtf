@@ -4,16 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.sbrf.nhl.rtf.rest.dto.Source;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -48,6 +53,11 @@ public class Feedback {
     @Valid
     private FeedbackAuthor author;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    // todo: replace with Entity
+    private Source source = Source.FORM;
+
     @Embeddable
     @Data
     @Builder
@@ -61,12 +71,14 @@ public class Feedback {
         /**
          * Анонимный грейд автора оценки
          */
-        @NotNull
-        private Integer grade;
+        @Min(5)
+        @Max(25)
+        private int grade;
         /**
-         * вес оценки по текущей характеристике
+         * оценка автора по текущей характеристике
          */
-        @NotNull
-        private Integer weight;
+        @Max(100)
+        @Min(0)
+        private int valueOnAbility;
     }
 }
