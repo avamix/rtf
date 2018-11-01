@@ -19,5 +19,5 @@ public class FeedbackDto {
     private Integer value;
     @Size(max = 500)
     private String comment;
-    private Boolean anonymous = false;
+    private boolean anonymous = false;
 }

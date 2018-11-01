@@ -60,6 +60,7 @@ public class PersonService {
                         .fullName(person.getFullName())
                         .id(person.getId())
                         .roles(getRoleNames(person))
+                        .successFactorId(person.getSuccessFactorId())
                         .build());
     }
 }

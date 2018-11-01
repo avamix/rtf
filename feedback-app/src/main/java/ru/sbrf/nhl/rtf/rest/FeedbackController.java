@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import ru.sbrf.nhl.rtf.rest.dto.FeedbackDto;
 import ru.sbrf.nhl.rtf.rest.dto.PersonDto;
@@ -17,6 +18,7 @@ import ru.sbrf.nhl.rtf.rest.dto.PersonListItemDto;
 @RequiredArgsConstructor
 public class FeedbackController {
     private final PersonService personService;
+    private final FeedbackService feedbackService;
 
     @GetMapping("/person/{id}")
     public PersonDto person(@PathVariable("id") Long id) {
@@ -29,10 +31,7 @@ public class FeedbackController {
     }
 
     @PostMapping("/feedback")
-    public void addFeedback(@RequestBody FeedbackDto feedbackDto) {
-        // todo: validate request
-        // TODO: get current user credentials
-        // todo: find author person by successfactoryid;
-        // todo: call service to persist
+    public void addFeedback(@RequestHeader("sfid") String successFactorId, @RequestBody FeedbackDto feedbackDto) {
+        feedbackService.add(successFactorId, feedbackDto);
     }
 }

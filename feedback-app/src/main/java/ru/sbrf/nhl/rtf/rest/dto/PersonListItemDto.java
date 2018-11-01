@@ -14,5 +14,6 @@ import java.util.Set;
 public class PersonListItemDto {
     private Long id;
     private String fullName;
+    private String successFactorId;
     private Set<String> roles;
 }
