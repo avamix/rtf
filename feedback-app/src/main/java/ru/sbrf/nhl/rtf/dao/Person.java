@@ -28,6 +28,6 @@ public class Person {
     @NotNull
     private Integer grade;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
-    @OrderBy("createdBy DESC")
+    @OrderBy("createdAt DESC")
     private SortedSet<AbilitySnapshot> abilities;
 }
