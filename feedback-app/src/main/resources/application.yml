@@ -1,3 +1,5 @@
+test-data: enabled
+
 spring:
   jpa:
     hibernate:

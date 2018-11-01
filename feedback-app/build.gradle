@@ -20,6 +20,7 @@ repositories {
 }
 
 dependencies {
+//    compile ("org.springframework.boot:spring-boot-starter-security:$springbootVersion")
     compile ("org.springframework.boot:spring-boot-starter-data-jpa:$springbootVersion")
     compile ("org.springframework.boot:spring-boot-starter-web:$springbootVersion")
     compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
