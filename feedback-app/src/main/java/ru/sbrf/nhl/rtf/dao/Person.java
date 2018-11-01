@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -23,6 +24,10 @@ public class Person {
     private Set<Person> heads;
     private String successFactorId;
     private String fullName;
-    private Integer currentWeight;
-
+    @ManyToMany
+    private Set<Role> roles;
+    @NotNull
+    private Long grade;
+//
+//    private Map<Ability, Long> abilities;
 }
