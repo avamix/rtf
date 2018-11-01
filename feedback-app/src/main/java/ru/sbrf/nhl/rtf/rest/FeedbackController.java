@@ -16,7 +16,7 @@ public class FeedbackController {
     private final PersonService personService;
 
     @GetMapping("/person/{id}")
-    public PersonDto profile(@PathVariable("id") Long id) {
+    public PersonDto person(@PathVariable("id") Long id) {
         return personService.getBy(id);
     }
 
