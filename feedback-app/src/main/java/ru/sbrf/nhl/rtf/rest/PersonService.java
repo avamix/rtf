@@ -13,6 +13,7 @@ import ru.sbrf.nhl.rtf.rest.dto.AbilityDto;
 import ru.sbrf.nhl.rtf.rest.dto.PersonDto;
 import ru.sbrf.nhl.rtf.rest.dto.PersonListItemDto;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,7 +32,8 @@ public class PersonService {
                 .entrySet().stream()
                 .map(entry -> entry.getValue().stream()
                         .max(comparing(AbilitySnapshot::getCreatedAt))
-                        .orElseThrow(IllegalStateException::new))
+                        .orElse(null))
+                .filter(Objects::nonNull)
                 .map(abilitySnapshot -> AbilityDto.builder()
                         .name(abilitySnapshot.getAbility().getName())
                         .value(abilitySnapshot.getValue())
