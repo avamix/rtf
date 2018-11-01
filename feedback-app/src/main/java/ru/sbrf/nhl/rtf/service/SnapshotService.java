@@ -81,14 +81,14 @@ public class SnapshotService {
 
     private static AbilitySnapshot getAbilitySnapshot(Person person, Map.Entry<Ability, List<Feedback>> entry) {
         List<Feedback> sorted = entry.getValue().stream()
-                .sorted(Comparator.comparing(f -> f.getAuthor().getValueOnAbility()))
+                .sorted(Comparator.comparing(f -> f.getAuthor().getWeight()))
                 .collect(toList());
         long sum = 0;
         long dt = 0;
         for (int i = 1; i <= sorted.size(); i++) {
             Feedback feedback = sorted.get(i - 1);
-            sum += feedback.getValue() * feedback.getAuthor().getValueOnAbility();
-            dt += feedback.getAuthor().getValueOnAbility();
+            sum += feedback.getValue() * feedback.getAuthor().getWeight();
+            dt += feedback.getAuthor().getWeight();
         }
         return AbilitySnapshot.builder()
                 .ability(entry.getKey())

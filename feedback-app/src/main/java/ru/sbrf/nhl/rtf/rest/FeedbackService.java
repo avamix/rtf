@@ -14,12 +14,14 @@ import ru.sbrf.nhl.rtf.dao.PersonRepository;
 import ru.sbrf.nhl.rtf.rest.dto.FeedbackDto;
 
 import javax.validation.constraints.NotNull;
+import java.util.Comparator;
 import java.util.Date;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class FeedbackService {
+    private static final int DEFAULT_WEIGHT = 50;
     private final PersonRepository personRepository;
     private final FeedbackRepository feedbackRepository;
     private final AbilityRepository abilityRepository;
@@ -34,7 +36,7 @@ public class FeedbackService {
                 .comment(feedbackDto.getComment())
                 .author(Feedback.FeedbackAuthor.builder()
                         .grade(author.getGrade())
-                        .valueOnAbility(getAuthorAbilityValue(author, feedbackDto.getAbilityId()))
+                        .weight(getAuthorAbilityValue(author, target, feedbackDto))
                         .person(feedbackDto.isAnonymous() ? null : author)
                         .build())
                 .ability(ability)
@@ -45,14 +47,21 @@ public class FeedbackService {
     }
 
     @NotNull
-    private Integer getAuthorAbilityValue(Person author, @NotNull Long abilityId) {
+    private Integer getAuthorAbilityValue(Person author, Person target, FeedbackDto feedbackDto) {
         if (CollectionUtils.isEmpty(author.getAbilities())) {
             return 0;
         }
-        return author.getAbilities().stream()
-                .filter(abilitySnapshot -> abilitySnapshot.getAbility().getId().equals(abilityId))
-                .findFirst()
+        Integer weight = author.getAbilities().stream()
+                .filter(abilitySnapshot -> abilitySnapshot.getAbility().getId().equals(feedbackDto.getAbilityId()))
+                .max(Comparator.comparing(AbilitySnapshot::getCreatedAt))
                 .map(AbilitySnapshot::getValue)
-                .orElse(0);
+                .orElse(DEFAULT_WEIGHT);
+
+        weight = (weight * author.getGrade()) / target.getGrade();
+        weight = (weight * feedbackDto.getSource().getWeight()) / 100;
+        //head
+        //general head
+
+        return weight;
     }
 }

@@ -109,7 +109,7 @@ public class TestDataCommandLineRunner implements CommandLineRunner {
     private Feedback.FeedbackAuthor createAuthor(List<Person> people, Ability ability) {
         Person person = randomPerson(people);
         Feedback.FeedbackAuthor feedbackAuthor = Feedback.FeedbackAuthor.builder()
-                .valueOnAbility(findValueInAbility(person, ability))
+                .weight(findValueInAbility(person, ability))
                 .person(person)
                 .grade(person.getGrade())
                 .build();

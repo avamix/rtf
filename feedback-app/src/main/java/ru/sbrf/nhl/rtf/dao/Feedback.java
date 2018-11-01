@@ -64,9 +64,9 @@ public class Feedback {
         @NotNull
         private Integer grade;
         /**
-         * оценка автора по текущей характеристике
+         * вес оценки по текущей характеристике
          */
         @NotNull
-        private Integer valueOnAbility;
+        private Integer weight;
     }
 }

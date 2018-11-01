@@ -19,5 +19,7 @@ public class FeedbackDto {
     private Integer value;
     @Size(max = 500)
     private String comment;
+    @NotNull
+    private Source source = Source.FORM;
     private boolean anonymous = false;
 }
