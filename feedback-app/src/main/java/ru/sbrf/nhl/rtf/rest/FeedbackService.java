@@ -40,6 +40,7 @@ public class FeedbackService {
                         .person(feedbackDto.isAnonymous() ? null : author)
                         .build())
                 .ability(ability)
+                .source(feedbackDto.getSource())
                 .targetCurrentGrade(target.getGrade())
                 .value(feedbackDto.getValue())
                 .build();

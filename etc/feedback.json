@@ -2,6 +2,7 @@
   "targetPersonId": 11,
   "abilityId": 1,
   "value": 78,
+  "source": "FORM",
   "comment": "Very well",
   "anonymous": false
 }

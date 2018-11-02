@@ -8,6 +8,7 @@ import ru.sbrf.nhl.rtf.dao.AbilitySnapshot;
 import ru.sbrf.nhl.rtf.dao.Feedback;
 import ru.sbrf.nhl.rtf.dao.Person;
 import ru.sbrf.nhl.rtf.dao.Role;
+import ru.sbrf.nhl.rtf.rest.dto.Source;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -79,6 +80,7 @@ public class TestDataCommandLineRunner implements CommandLineRunner {
                             .comment("Test comment on ability: " + ability.getName())
                             .postedAt(someDateInTheMonth())
                             .target(target)
+                            .source(Source.FORM)
                             .targetCurrentGrade(target.getGrade())
                             .value(value)
                             .build();
