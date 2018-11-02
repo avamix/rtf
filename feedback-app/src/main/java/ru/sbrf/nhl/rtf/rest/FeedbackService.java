@@ -14,14 +14,14 @@ import ru.sbrf.nhl.rtf.dao.PersonRepository;
 import ru.sbrf.nhl.rtf.rest.dto.FeedbackDto;
 
 import javax.validation.constraints.NotNull;
-import java.util.Comparator;
 import java.util.Date;
+
+import static java.util.Comparator.comparing;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class FeedbackService {
-    private static final int DEFAULT_WEIGHT = 50;
     private final PersonRepository personRepository;
     private final FeedbackRepository feedbackRepository;
     private final AbilityRepository abilityRepository;
@@ -54,7 +54,7 @@ public class FeedbackService {
         }
         return author.getAbilities().stream()
                 .filter(abilitySnapshot -> abilitySnapshot.getAbility().getId().equals(feedbackDto.getAbilityId()))
-                .max(Comparator.comparing(AbilitySnapshot::getCreatedAt))
+                .max(comparing(AbilitySnapshot::getCreatedAt))
                 .map(AbilitySnapshot::getValue)
                 .orElse(0);
     }

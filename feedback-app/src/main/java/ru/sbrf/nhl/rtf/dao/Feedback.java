@@ -23,6 +23,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+/**
+ * Отзыв по компетенции
+ */
 @Entity
 @Data
 @Builder
@@ -35,24 +38,42 @@ public class Feedback {
     @OneToOne
     @NotNull
     private Person target;
+    /**
+     * Грейд оцениваемого сотрудника в момент оценки
+     */
     @NotNull
     private Integer targetCurrentGrade;
+    /**
+     * Оценка от 0 - 100
+     */
     @NotNull
     private Integer value;
     @Size(max = 500)
     private String comment;
+    /**
+     * Оцениваемая компетенция
+     */
     @OneToOne
     @NotNull
     private Ability ability;
+    /**
+     * Время предоставления оценки
+     */
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     private Date postedAt;
 
+    /**
+     * Информация о оценивателе
+     */
     @Embedded
     @NotNull
     @Valid
     private FeedbackAuthor author;
 
+    /**
+     * Источник получения оценки
+     */
     @Enumerated(EnumType.STRING)
     @NotNull
     // todo: replace with Entity
@@ -69,11 +90,11 @@ public class Feedback {
         @OneToOne
         private Person person;
         /**
-         * Анонимный грейд автора оценки
+         * Грейд автора отзыва в момент проставления оценки
          */
         private int grade;
         /**
-         * оценка автора по текущей характеристике
+         * Оценка по текущей характеристике от 0 - 100
          */
         @Max(100)
         @Min(0)

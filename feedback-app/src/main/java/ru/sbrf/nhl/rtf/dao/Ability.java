@@ -13,6 +13,9 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Элекмент справочника квалификаций
+ */
 @Entity
 @Builder
 @Data
