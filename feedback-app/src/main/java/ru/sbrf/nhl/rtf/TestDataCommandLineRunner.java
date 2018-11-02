@@ -26,6 +26,7 @@ import static java.util.Collections.singleton;
 @Configuration
 @ConditionalOnProperty(name = "test-data", havingValue = "enabled")
 public class TestDataCommandLineRunner implements CommandLineRunner {
+    public static final int MINIMAL_GRADE = 5;
     private final Random RANDOM = new Random();
     private EntityManagerFactory emf;
 
@@ -56,7 +57,7 @@ public class TestDataCommandLineRunner implements CommandLineRunner {
                 .map(name -> {
                     Person person = Person.builder()
                             .fullName(name)
-                            .grade(RANDOM.nextInt(15))
+                            .grade(MINIMAL_GRADE + RANDOM.nextInt(15))
                             .successFactorId(name)
                             .roles(singleton(roles.get(RANDOM.nextInt(roles.size()))))
                             .build();
